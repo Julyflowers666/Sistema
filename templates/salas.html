@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>SENAC RESERVA - SALAS</title>
+    </head>
+    <body>
+        <h1>Salas Cadastradas no Sistema</h1>
+
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Capacidade</th>
+                <th>Nome</th>
+                <th>Descricao</th>
+                <th>disponibilidade</th>
+            </tr>
+
+            {% for sala in salas %}
+            <tr>
+                <td>{{ sala.id_sala }}</td>
+                <td>{{ sala.tipo_sala }}</td>
+                <td>{{ sala.capacidade }}</td>
+                <td>{{ sala.nome_sala}}</td>
+                <td>{{ sala.descricao }}</td>
+                <td>{{ sala.disponibilidade }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

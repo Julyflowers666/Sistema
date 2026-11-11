@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>SENAC RESERVA</title>
+
+        <!-- BOOTSTRAP -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    </head>
+        
+    <body class="bg-light">
+        <div class="container mt-5">
+            <h2>RESERVA DE SALAS - SENAC</h2>
+
+            <form action="/reservas" method="POST">
+
+                <div class="mb-3">
+                    <label class="form-label">Sala</label>
+                    <select name="id_sala" class="form-select">
+                        <option value="1" selected>Sala 01</option>
+                         <option value="2" selected>Sala 02</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Data</label>
+                    <input type="date"
+                            name="data_reserva"
+                            value="2026-11-10"
+                            class="form-control"
+                            required>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Início</label>
+                        <input type="time"
+                                name="hora_inicio"
+                                value="19:00"
+                                class="form-control"
+                                required>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Término</label>
+                        <input type="time"
+                                name="hora_fim"
+                                value="22:00"
+                                class="form-control"
+                                required>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">Finalidade</label>
+                    <input type="text"
+                            name="finalidade"
+                            value="Aula prática de Desenvolvimento de Sistemas"
+                            class="form-control"
+                            required>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    reservas
+                </button>
+
+            </form>
+        </div>
+
+    </body>
+
+</html>
