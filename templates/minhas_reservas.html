@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Minhas Reservas - SENAC</title>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Minhas Reservas</h2>
+            <a href=" {{ url_for('reservar') }} "
+                class="btn btn-primary">
+                + Nova Reserva
+            </a>
+        </div>
+        {% with mensagens = get_flashed_messages(with_categories=true) %}
+            {% for categoria, mensagem in mensagens %}
+            <div class="alert alert-{{categoria}}">
+                {{mensagem}}
+            </div>
+            {% endfor %}
+        {% endwith %}
+        <div class="card shadow-sm">
+            <div class="card-body">
+                {% if reservas %}
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Sala</th>
+                                <th>Data</th>
+                                <th>Início</th>
+                                <th>Fim</th>
+                                <th>Finalidade</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for reserva in reservas %}
+                            <tr>
+                                <td>{{reserva.id_reserva}}</td>
+                                <td>{{reserva.nome_sala}}</td>
+                                <td>{{reserva.data_reserva.strftime('%d/%m/%Y')}}</td>
+                                <td>{{reserva.horario_inicio}}</td>
+                                <td>{{reserva.horario_fim}}</td>
+                                <td>{{reserva.finalidade}}</td>
+                                <td>
+                                    {% if reserva.status == 'Confirmada' %}
+                                    <span class="badge bg-success">
+                                        Confirmada
+                                    </span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">
+                                        {{reserva.status}}
+                                    </span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="alert alert-info">
+                    Você ainda não possui reservas cadastradas.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <a href="{{ url_for('listar_salas')}}" class="btn btn-outline-secondary mt-3">
+            Voltar para salas
+        </a>
+    </div>
+    
+</body>
+</html>
